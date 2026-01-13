@@ -1,3 +1,4 @@
 services:
   nginx-svc:
     image: nginx:trixie-perl
+    container_name: react-cont

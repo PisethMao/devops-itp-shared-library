@@ -33,6 +33,12 @@ pipeline {
             }
         }
 
+        stage('Debug Workspace') {
+            steps {
+                sh 'ls -R'
+            }
+        }
+
         stage('Build') {
             steps {
                 sh '''
