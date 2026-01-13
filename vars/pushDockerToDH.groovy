@@ -1,5 +1,5 @@
 def call(String imageName) {
-    def dockerfileContent = libraryResource('docker/Dockerfile')
+    def dockerfileContent = libraryResource('nextjs/Dockerfile')
     writeFile file: 'Dockerfile', text: dockerfileContent
     withCredentials([usernamePassword(credentialsId: 'DOCKERHUB', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
         // some block
