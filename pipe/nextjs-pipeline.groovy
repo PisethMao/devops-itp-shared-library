@@ -3,6 +3,10 @@
 pipeline {
     agent any
 
+    environment {
+        DOCKERFILE_PATH = 'resources/nextjs/Dockerfile'  // Path to Dockerfile in shared library
+    }
+
     stages {
         stage('Clone Next.js Code') {
             steps {
@@ -39,10 +43,16 @@ pipeline {
             }
         }
 
+        stage('Load Dockerfile from Shared Library') {
+            steps {
+                writeFile file: 'Dockerfile', text: libraryResource('resources/nextjs/Dockerfile')
+            }
+        }
+
         stage('Build') {
             steps {
                 sh '''
-                    docker build -t pisethmao/jenkins-nextjs-sonarqube-pipeline:$BUILD_NUMBER .
+                    docker build -f Dockerfile -t pisethmao/jenkins-nextjs-sonarqube-pipeline:$BUILD_NUMBER .
                 '''
             }
         }
