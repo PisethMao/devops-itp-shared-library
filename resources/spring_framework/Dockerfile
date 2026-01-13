@@ -1,1 +1,1 @@
-FROM maven:4.0.0-rc-5-amazoncorretto-25-debian-trixie
+FROM openjdk:27-ea-slim-trixie
